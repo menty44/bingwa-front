@@ -1,0 +1,22 @@
+{
+  "name": "bingwafront",
+  "version": "1.0.0",
+  "description": "Front end for bingwa",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/menty44/bingwa-front.git"
+  },
+  "keywords": [
+    "bingwa"
+  ],
+  "author": "Fredrick Oluoch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/menty44/bingwa-front/issues"
+  },
+  "homepage": "https://github.com/menty44/bingwa-front#readme"
+}

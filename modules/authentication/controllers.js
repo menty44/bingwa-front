@@ -13,6 +13,11 @@ angular.module('Authentication', [])
             $location.path('/reg');
         }
 
+        $scope.back = function () {
+            console.log('back')
+            $location.path('/login');
+        }
+
         $scope.login = function () {
             console.log($scope.username);
             console.log($scope.password);

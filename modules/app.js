@@ -67,6 +67,7 @@ angular.module('angular-login', [
     });
   };
   $scope.logoutMe = function () {
+    localStorage.clear();
     loginService.logoutUser($http.get('/logout'));
   };
 });

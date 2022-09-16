@@ -112,9 +112,11 @@ angular.module('angular-login.mock', ['ngMockE2E'])
         localStorage.setItem('tokenStorage', angular.toJson(tokenStorage));
         return [200, {}, {}];
       } else {
+        localStorage.clear();
         return [401, 'auth token invalid or expired', {}];
       }
     } else {
+      localStorage.clear();
       return [401, 'auth token invalid or expired', {}];
     }
   });

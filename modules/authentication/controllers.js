@@ -27,7 +27,6 @@ angular.module('Authentication', [])
                 password: $scope.password
             }, config = 'Content-Type: application/json ';
 
-            // $http.post(url, data, config)
             $http({
                 url: url,
                 method: "POST",
@@ -49,4 +48,35 @@ angular.module('Authentication', [])
                 $scope.dataLoading = false;
             });
         };
+
+        $scope.register = function () {
+            let data ={
+                first_name: $scope.firstname,
+                last_name: $scope.lastname,
+                email: $scope.username,
+                password: $scope.password
+            }
+
+            $http({
+                url: 'http://localhost:3000/users',
+                method: "POST",
+                data: data
+            }).then(function (response) {
+                // This function handles success
+                console.log(response)
+                if (response.status === 200) {
+                    console.log(response.data);
+                    $scope.dataLoading = false;
+                    $location.path('/login');
+                }else {
+                    $scope.error = 'Error Occured while saving user data';
+                }
+
+            }, function (error) {
+                // this function handles error
+                console.log(error);
+                $scope.error = 'Server Error ';
+                $scope.dataLoading = false;
+            });
+        }
     }]);

@@ -16,7 +16,8 @@ angular.module('Home', [])
                     $location.path('/login');
                 }
 
-                $scope.update_route = function () {
+                $scope.update_route = function (obj) {
+                    localStorage.setItem('ticketupdate', JSON.stringify(obj))
                     $location.path('/update/ticket');
                 }
 
@@ -32,6 +33,38 @@ angular.module('Home', [])
                         console.log(response.data);
                     });
 
+                }
+
+                $scope.back = function () {
+                    $location.path('/');
+                }
+
+                $scope.updateTickets = function () {
+                    let state_data = localStorage.getItem('ticketupdate');
+                    let user_data = localStorage.getItem('ticketupdate');
+                    let parsedSateUser = JSON.parse(user_data)
+                    let parsedSate = JSON.parse(state_data)
+                    // $location.path('/');http://localhost:3000/tickets/63224c60c9b3a51411619901
+                    let data = {
+                        id: parsedSate.id,
+                        title: $scope.title,
+                        description: $scope.description,
+                        impersonate: parsedSate.impersonate,
+                        created_by: parsedSate.created_by,
+                        act_as: parsedSate.act_as,
+                        naration: `Updated by ${parsedSateUser.user.first_name.toUpperCase() } ${parsedSateUser.user.last_name.toUpperCase() } `
+                    }
+                    $http(
+                        {
+                            method: 'PUT',
+                            url: `http://localhost:3000/tickets/${parsedSate.id}`
+                            data: data
+                        }).then(function successCallback(response) {
+                        // this callback will be called asynchronously
+                        // when the response is available
+                        $rootScope.tickets = response.data;
+                        console.log(response.data);
+                    });
                 }
 
 

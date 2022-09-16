@@ -2,33 +2,31 @@
 <p>You're logged in!!</p>
 <p><a href="#/login" ng-click="logout()">Logout</a></a></p>
 
-<div ng-init="fetchTickets()">
+<div ng-init="updateTickets()">
 
-    <div class="table-responsive">
-        <table class="table">
-            <caption>List of Tickets</caption>
-            <thead>
-            <tr >
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Impersonate</th>
-                <th scope="col">Naration</th>
-                <th scope="col" style="color: orange">Update</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="n in tickets">
-                <th scope="row">{{n.id}}</th>
-                <td>{{n.title}}</td>
-                <td>{{n.description}}</td>
-                <td>{{n.impersonate}}</td>
-                <td>{{n.naration}}</td>
-                <td><button ng-click="update_route()" style="width: 100%" type="submit" class="btn btn-info">Update</button></td>
-            </tr>
+    <div ng-show="error" class="alert alert-danger">{{error}}</div>
+    <form name="form" ng-submit="register()" role="form">
+        <div class="form-group">
+            <label for="username">Title</label>
+            <input type="text" name="username" id="firstname" class="form-control" ng-model="title" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Firstname is required</span>
+        </div>
+        <div class="form-group">
+            <label for="username">Description</label>
+            <input type="text" name="username" id="username" class="form-control" ng-model="description" required />
+            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Email is required</span>
+        </div>
 
-            </tbody>
-        </table>
-    </div>
+        <div class="form-actions">
+            <button style="width: 100%" type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Update Ticket</button>
+
+            <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </div>
+    </form>
+
+    <form name="form" ng-submit="back()" role="form" style="margin-top: 10px;">
+        <button style="width: 100%" type="submit" class="btn btn-info">Back to Home Page</button>
+    </form>
+
 
 </div>

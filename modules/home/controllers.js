@@ -41,11 +41,11 @@ angular.module('Home', [])
 
                 $scope.updateTickets = function () {
                     let state_data = localStorage.getItem('ticketupdate');
-                    let user_data = localStorage.getItem('ticketupdate');
+                    let user_data = localStorage.getItem('currentUser');
                     let parsedSateUser = JSON.parse(user_data)
                     let parsedSate = JSON.parse(state_data)
                     // $location.path('/');http://localhost:3000/tickets/63224c60c9b3a51411619901
-                    let data = {
+                    let udata = {
                         id: parsedSate.id,
                         title: $scope.title,
                         description: $scope.description,
@@ -57,13 +57,14 @@ angular.module('Home', [])
                     $http(
                         {
                             method: 'PUT',
-                            url: `http://localhost:3000/tickets/${parsedSate.id}`
-                            data: data
+                            url: `http://localhost:3000/tickets/${parsedSate.id}`,
+                            data: udata
                         }).then(function successCallback(response) {
+                        console.log(response.data);
                         // this callback will be called asynchronously
                         // when the response is available
-                        $rootScope.tickets = response.data;
-                        console.log(response.data);
+                        // $rootScope.tickets = response.data;
+
                     });
                 }
 
